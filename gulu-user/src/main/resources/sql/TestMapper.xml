@@ -1,0 +1,899 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linzb.guluuser.test.dao.TestDAO">
+    <resultMap id="BaseResultMap" type="com.linzb.guluuser.test.entity.EmpBasInfoExtCDO" >
+        <!--单位编号-->
+        <result column="EMP_NO" property="empNo" />
+        <!--单位实体编码-->
+        <result column="EMP_ENTT_CODG" property="empEnttCodg" />
+        <!--单位管理类型-->
+        <result column="EMP_MGT_TYPE" property="empMgtType" />
+        <!--上级单位编号-->
+        <result column="PRNT_EMP_NO" property="prntEmpNo" />
+        <!--关联法人标志-->
+        <result column="ASOC_LEGENT_FLAG" property="asocLegentFlag" />
+        <!--单位类型-->
+        <result column="EMP_TYPE" property="empType" />
+        <!--单位名称-->
+        <result column="EMP_NAME" property="empName" />
+        <!--注册名称-->
+        <result column="REG_NAME" property="regName" />
+        <!--所属医保区划-->
+        <result column="LOC_ADMDVS" property="locAdmdvs" />
+        <!--联系人证件类型-->
+        <result column="CONER_CERT_TYPE" property="conerCertType" />
+        <!--联系人证件号-->
+        <result column="CONER_CERTNO" property="conerCertno" />
+        <!--联系人姓名-->
+        <result column="CONER_NAME" property="conerName" />
+        <!--联系人电子邮箱-->
+        <result column="CONER_EMAIL" property="conerEmail" />
+        <!--联系电话-->
+        <result column="TEL" property="tel" />
+        <!--传真号码-->
+        <result column="FAX_NO" property="faxNo" />
+        <!--税务登记号-->
+        <result column="TAX_REG_NO" property="taxRegNo" />
+        <!--组织机构代码-->
+        <result column="ORGCODE" property="orgcode" />
+        <!--注册号-->
+        <result column="REGNO" property="regno" />
+        <!--注册号证件类型-->
+        <result column="REGNO_CERT_TYPE" property="regnoCertType" />
+        <!--单位地址-->
+        <result column="EMP_ADDR" property="empAddr" />
+        <!--邮政编码-->
+        <result column="POSCODE" property="poscode" />
+        <!--批准成立部门-->
+        <result column="APRV_ESTA_DEPT" property="aprvEstaDept" />
+        <!--批准成立日期-->
+        <result column="APRV_ESTA_DATE" property="aprvEstaDate" />
+        <!--批准成立文号-->
+        <result column="APRV_ESTA_DOCNO" property="aprvEstaDocno" />
+        <!--上级医保区划-->
+        <result column="PRNT_ADMDVS" property="prntAdmdvs" />
+        <!--参保所属医保区划-->
+        <result column="INSU_ADMDVS" property="insuAdmdvs" />
+        <!--组织有效状态-->
+        <result column="ORG_VALI_STAS" property="orgValiStas" />
+        <!--法定代表人电话号码-->
+        <result column="LEGREP_TEL" property="legrepTel" />
+        <!--法定代表人姓名-->
+        <result column="LEGREP_NAME" property="legrepName" />
+        <!--法定代表人证件类型-->
+        <result column="LEGREP_CERT_TYPE" property="legrepCertType" />
+        <!--法定代表人证件号码-->
+        <result column="LEGREP_CERTNO" property="legrepCertno" />
+        <!--组织机构代码证颁发单位-->
+        <result column="ORGCODE_ISSU_EMP" property="orgcodeIssuEmp" />
+        <!--虚拟标志-->
+        <result column="VIR_FLAG" property="virFlag" />
+        <!--最新变更信息-->
+        <result column="LAST_CHG_INFO" property="lastChgInfo" />
+        <!--发送注册标志-->
+        <result column="SEND_REG_FLAG" property="sendRegFlag" />
+        <!--备注-->
+        <result column="MEMO" property="memo" />
+        <!--有效标志-->
+        <result column="VALI_FLAG" property="valiFlag" />
+        <!--统筹区编号-->
+        <result column="POOLAREA_NO" property="poolareaNo" />
+        <!--经办渠道-->
+        <result column="OPT_CHNL" property="optChnl" />
+        <!--数据创建时间-->
+        <result column="CRTE_TIME" property="crteTime" />
+        <!--数据更新时间-->
+        <result column="UPDT_TIME" property="updtTime" />
+        <!--数据唯一记录号-->
+        <result column="RID" property="rid" />
+        <!--参保单位管理事件ID-->
+        <result column="INSU_EMP_MGT_EID" property="insuEmpMgtEid" />
+        <!--企业规格标志-->
+        <result column="ENTP_SPEC_FLAG" property="entpSpecFlag" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+	EMP_NO,EMP_ENTT_CODG,EMP_MGT_TYPE,PRNT_EMP_NO,ASOC_LEGENT_FLAG,EMP_TYPE,EMP_NAME,REG_NAME,LOC_ADMDVS,CONER_CERT_TYPE,CONER_CERTNO,CONER_NAME,CONER_EMAIL,TEL,FAX_NO,TAX_REG_NO,ORGCODE,REGNO,REGNO_CERT_TYPE,EMP_ADDR,POSCODE,APRV_ESTA_DEPT,APRV_ESTA_DATE,APRV_ESTA_DOCNO,PRNT_ADMDVS,INSU_ADMDVS,ORG_VALI_STAS,LEGREP_TEL,LEGREP_NAME,LEGREP_CERT_TYPE,LEGREP_CERTNO,ORGCODE_ISSU_EMP,VIR_FLAG,LAST_CHG_INFO,SEND_REG_FLAG,MEMO,VALI_FLAG,POOLAREA_NO,OPT_CHNL,CRTE_TIME,UPDT_TIME,RID,INSU_EMP_MGT_EID,ENTP_SPEC_FLAG
+	</sql>
+
+    <sql id="whereCondtion">
+        <trim prefixOverrides="and">
+            <if test="empNo!=null and empNo !='' ">
+                AND EMP_NO=#{empNo,jdbcType=VARCHAR}<!--单位编号-->
+            </if>
+            <if test="empEnttCodg!=null and empEnttCodg !='' ">
+                AND EMP_ENTT_CODG=#{empEnttCodg,jdbcType=VARCHAR}<!--单位实体编码-->
+            </if>
+            <if test="empMgtType!=null and empMgtType !='' ">
+                AND EMP_MGT_TYPE=#{empMgtType,jdbcType=VARCHAR}<!--单位管理类型-->
+            </if>
+            <if test="prntEmpNo!=null and prntEmpNo !='' ">
+                AND PRNT_EMP_NO=#{prntEmpNo,jdbcType=VARCHAR}<!--上级单位编号-->
+            </if>
+            <if test="asocLegentFlag!=null and asocLegentFlag !='' ">
+                AND ASOC_LEGENT_FLAG=#{asocLegentFlag,jdbcType=VARCHAR}<!--关联法人标志-->
+            </if>
+            <if test="empType!=null and empType !='' ">
+                AND EMP_TYPE=#{empType,jdbcType=VARCHAR}<!--单位类型-->
+            </if>
+            <if test="empName!=null and empName !='' ">
+                AND EMP_NAME=#{empName,jdbcType=VARCHAR}<!--单位名称-->
+            </if>
+            <if test="regName!=null and regName !='' ">
+                AND REG_NAME=#{regName,jdbcType=VARCHAR}<!--注册名称-->
+            </if>
+            <if test="locAdmdvs!=null and locAdmdvs !='' ">
+                AND LOC_ADMDVS=#{locAdmdvs,jdbcType=VARCHAR}<!--所属医保区划-->
+            </if>
+            <if test="conerCertType!=null and conerCertType !='' ">
+                AND CONER_CERT_TYPE=#{conerCertType,jdbcType=VARCHAR}<!--联系人证件类型-->
+            </if>
+            <if test="conerCertno!=null and conerCertno !='' ">
+                AND CONER_CERTNO=#{conerCertno,jdbcType=VARCHAR}<!--联系人证件号-->
+            </if>
+            <if test="conerName!=null and conerName !='' ">
+                AND CONER_NAME=#{conerName,jdbcType=VARCHAR}<!--联系人姓名-->
+            </if>
+            <if test="conerEmail!=null and conerEmail !='' ">
+                AND CONER_EMAIL=#{conerEmail,jdbcType=VARCHAR}<!--联系人电子邮箱-->
+            </if>
+            <if test="tel!=null and tel !='' ">
+                AND TEL=#{tel,jdbcType=VARCHAR}<!--联系电话-->
+            </if>
+            <if test="faxNo!=null and faxNo !='' ">
+                AND FAX_NO=#{faxNo,jdbcType=VARCHAR}<!--传真号码-->
+            </if>
+            <if test="taxRegNo!=null and taxRegNo !='' ">
+                AND TAX_REG_NO=#{taxRegNo,jdbcType=VARCHAR}<!--税务登记号-->
+            </if>
+            <if test="orgcode!=null and orgcode !='' ">
+                AND ORGCODE=#{orgcode,jdbcType=VARCHAR}<!--组织机构代码-->
+            </if>
+            <if test="regno!=null and regno !='' ">
+                AND REGNO=#{regno,jdbcType=VARCHAR}<!--注册号-->
+            </if>
+            <if test="regnoCertType!=null and regnoCertType !='' ">
+                AND REGNO_CERT_TYPE=#{regnoCertType,jdbcType=VARCHAR}<!--注册号证件类型-->
+            </if>
+            <if test="empAddr!=null and empAddr !='' ">
+                AND EMP_ADDR=#{empAddr,jdbcType=VARCHAR}<!--单位地址-->
+            </if>
+            <if test="poscode!=null and poscode !='' ">
+                AND POSCODE=#{poscode,jdbcType=VARCHAR}<!--邮政编码-->
+            </if>
+            <if test="aprvEstaDept!=null and aprvEstaDept !='' ">
+                AND APRV_ESTA_DEPT=#{aprvEstaDept,jdbcType=VARCHAR}<!--批准成立部门-->
+            </if>
+            <if test="aprvEstaDate!=null">
+                AND APRV_ESTA_DATE=#{aprvEstaDate,jdbcType=DATE}<!--批准成立日期-->
+            </if>
+            <if test="aprvEstaDocno!=null and aprvEstaDocno !='' ">
+                AND APRV_ESTA_DOCNO=#{aprvEstaDocno,jdbcType=VARCHAR}<!--批准成立文号-->
+            </if>
+            <if test="prntAdmdvs!=null and prntAdmdvs !='' ">
+                AND PRNT_ADMDVS=#{prntAdmdvs,jdbcType=VARCHAR}<!--上级医保区划-->
+            </if>
+            <if test="insuAdmdvs!=null and insuAdmdvs !='' ">
+                AND INSU_ADMDVS=#{insuAdmdvs,jdbcType=VARCHAR}<!--参保所属医保区划-->
+            </if>
+            <if test="orgValiStas!=null and orgValiStas !='' ">
+                AND ORG_VALI_STAS=#{orgValiStas,jdbcType=VARCHAR}<!--组织有效状态-->
+            </if>
+            <if test="legrepTel!=null and legrepTel !='' ">
+                AND LEGREP_TEL=#{legrepTel,jdbcType=VARCHAR}<!--法定代表人电话号码-->
+            </if>
+            <if test="legrepName!=null and legrepName !='' ">
+                AND LEGREP_NAME=#{legrepName,jdbcType=VARCHAR}<!--法定代表人姓名-->
+            </if>
+            <if test="legrepCertType!=null and legrepCertType !='' ">
+                AND LEGREP_CERT_TYPE=#{legrepCertType,jdbcType=VARCHAR}<!--法定代表人证件类型-->
+            </if>
+            <if test="legrepCertno!=null and legrepCertno !='' ">
+                AND LEGREP_CERTNO=#{legrepCertno,jdbcType=VARCHAR}<!--法定代表人证件号码-->
+            </if>
+            <if test="orgcodeIssuEmp!=null and orgcodeIssuEmp !='' ">
+                AND ORGCODE_ISSU_EMP=#{orgcodeIssuEmp,jdbcType=VARCHAR}<!--组织机构代码证颁发单位-->
+            </if>
+            <if test="virFlag!=null and virFlag !='' ">
+                AND VIR_FLAG=#{virFlag,jdbcType=CHAR}<!--虚拟标志-->
+            </if>
+            <if test="lastChgInfo!=null and lastChgInfo !='' ">
+                AND LAST_CHG_INFO=#{lastChgInfo,jdbcType=VARCHAR}<!--最新变更信息-->
+            </if>
+            <if test="sendRegFlag!=null and sendRegFlag !='' ">
+                AND SEND_REG_FLAG=#{sendRegFlag,jdbcType=VARCHAR}<!--发送注册标志-->
+            </if>
+            <if test="memo!=null and memo !='' ">
+                AND MEMO=#{memo,jdbcType=VARCHAR}<!--备注-->
+            </if>
+            <if test="valiFlag!=null and valiFlag !='' ">
+                AND VALI_FLAG=#{valiFlag,jdbcType=VARCHAR}<!--有效标志-->
+            </if>
+            <if test="poolareaNo!=null and poolareaNo !='' ">
+                AND POOLAREA_NO=#{poolareaNo,jdbcType=VARCHAR}<!--统筹区编号-->
+            </if>
+            <if test="optChnl!=null and optChnl !='' ">
+                AND OPT_CHNL=#{optChnl,jdbcType=VARCHAR}<!--经办渠道-->
+            </if>
+            <if test="crteTime!=null">
+                AND CRTE_TIME=#{crteTime,jdbcType=DATE}<!--数据创建时间-->
+            </if>
+            <if test="updtTime!=null">
+                AND UPDT_TIME=#{updtTime,jdbcType=DATE}<!--数据更新时间-->
+            </if>
+            <if test="rid!=null and rid !='' ">
+                AND RID=#{rid,jdbcType=VARCHAR}<!--数据唯一记录号-->
+            </if>
+            <if test="insuEmpMgtEid!=null and insuEmpMgtEid !='' ">
+                AND INSU_EMP_MGT_EID=#{insuEmpMgtEid,jdbcType=VARCHAR}<!--参保单位管理事件ID-->
+            </if>
+            <if test="entpSpecFlag!=null and entpSpecFlag !='' ">
+                AND ENTP_SPEC_FLAG=#{entpSpecFlag,jdbcType=VARCHAR}<!--企业规格标志-->
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="UpdateSql">
+        <trim prefix="set" suffixOverrides=", ">
+            <if test="empNo!=null and empNo !='' ">
+                EMP_NO=#{empNo,jdbcType=VARCHAR},<!--单位编号-->
+            </if>
+            <if test="empEnttCodg!=null and empEnttCodg !='' ">
+                EMP_ENTT_CODG=#{empEnttCodg,jdbcType=VARCHAR},<!--单位实体编码-->
+            </if>
+            <if test="empMgtType!=null and empMgtType !='' ">
+                EMP_MGT_TYPE=#{empMgtType,jdbcType=VARCHAR},<!--单位管理类型-->
+            </if>
+            <if test="prntEmpNo!=null and prntEmpNo !='' ">
+                PRNT_EMP_NO=#{prntEmpNo,jdbcType=VARCHAR},<!--上级单位编号-->
+            </if>
+            <if test="asocLegentFlag!=null and asocLegentFlag !='' ">
+                ASOC_LEGENT_FLAG=#{asocLegentFlag,jdbcType=VARCHAR},<!--关联法人标志-->
+            </if>
+            <if test="empType!=null and empType !='' ">
+                EMP_TYPE=#{empType,jdbcType=VARCHAR},<!--单位类型-->
+            </if>
+            <if test="empName!=null and empName !='' ">
+                EMP_NAME=#{empName,jdbcType=VARCHAR},<!--单位名称-->
+            </if>
+            <if test="regName!=null and regName !='' ">
+                REG_NAME=#{regName,jdbcType=VARCHAR},<!--注册名称-->
+            </if>
+            <if test="locAdmdvs!=null and locAdmdvs !='' ">
+                LOC_ADMDVS=#{locAdmdvs,jdbcType=VARCHAR},<!--所属医保区划-->
+            </if>
+            <if test="conerCertType!=null and conerCertType !='' ">
+                CONER_CERT_TYPE=#{conerCertType,jdbcType=VARCHAR},<!--联系人证件类型-->
+            </if>
+            <if test="conerCertno!=null and conerCertno !='' ">
+                CONER_CERTNO=#{conerCertno,jdbcType=VARCHAR},<!--联系人证件号-->
+            </if>
+            <if test="conerName!=null and conerName !='' ">
+                CONER_NAME=#{conerName,jdbcType=VARCHAR},<!--联系人姓名-->
+            </if>
+            <if test="conerEmail!=null and conerEmail !='' ">
+                CONER_EMAIL=#{conerEmail,jdbcType=VARCHAR},<!--联系人电子邮箱-->
+            </if>
+            <if test="tel!=null and tel !='' ">
+                TEL=#{tel,jdbcType=VARCHAR},<!--联系电话-->
+            </if>
+            <if test="faxNo!=null and faxNo !='' ">
+                FAX_NO=#{faxNo,jdbcType=VARCHAR},<!--传真号码-->
+            </if>
+            <if test="taxRegNo!=null and taxRegNo !='' ">
+                TAX_REG_NO=#{taxRegNo,jdbcType=VARCHAR},<!--税务登记号-->
+            </if>
+            <if test="orgcode!=null and orgcode !='' ">
+                ORGCODE=#{orgcode,jdbcType=VARCHAR},<!--组织机构代码-->
+            </if>
+            <if test="regno!=null and regno !='' ">
+                REGNO=#{regno,jdbcType=VARCHAR},<!--注册号-->
+            </if>
+            <if test="regnoCertType!=null and regnoCertType !='' ">
+                REGNO_CERT_TYPE=#{regnoCertType,jdbcType=VARCHAR},<!--注册号证件类型-->
+            </if>
+            <if test="empAddr!=null and empAddr !='' ">
+                EMP_ADDR=#{empAddr,jdbcType=VARCHAR},<!--单位地址-->
+            </if>
+            <if test="poscode!=null and poscode !='' ">
+                POSCODE=#{poscode,jdbcType=VARCHAR},<!--邮政编码-->
+            </if>
+            <if test="aprvEstaDept!=null and aprvEstaDept !='' ">
+                APRV_ESTA_DEPT=#{aprvEstaDept,jdbcType=VARCHAR},<!--批准成立部门-->
+            </if>
+            <if test="aprvEstaDate!=null">
+                APRV_ESTA_DATE=#{aprvEstaDate,jdbcType=DATE},<!--批准成立日期-->
+            </if>
+            <if test="aprvEstaDocno!=null and aprvEstaDocno !='' ">
+                APRV_ESTA_DOCNO=#{aprvEstaDocno,jdbcType=VARCHAR},<!--批准成立文号-->
+            </if>
+            <if test="prntAdmdvs!=null and prntAdmdvs !='' ">
+                PRNT_ADMDVS=#{prntAdmdvs,jdbcType=VARCHAR},<!--上级医保区划-->
+            </if>
+            <if test="insuAdmdvs!=null and insuAdmdvs !='' ">
+                INSU_ADMDVS=#{insuAdmdvs,jdbcType=VARCHAR},<!--参保所属医保区划-->
+            </if>
+            <if test="orgValiStas!=null and orgValiStas !='' ">
+                ORG_VALI_STAS=#{orgValiStas,jdbcType=VARCHAR},<!--组织有效状态-->
+            </if>
+            <if test="legrepTel!=null and legrepTel !='' ">
+                LEGREP_TEL=#{legrepTel,jdbcType=VARCHAR},<!--法定代表人电话号码-->
+            </if>
+            <if test="legrepName!=null and legrepName !='' ">
+                LEGREP_NAME=#{legrepName,jdbcType=VARCHAR},<!--法定代表人姓名-->
+            </if>
+            <if test="legrepCertType!=null and legrepCertType !='' ">
+                LEGREP_CERT_TYPE=#{legrepCertType,jdbcType=VARCHAR},<!--法定代表人证件类型-->
+            </if>
+            <if test="legrepCertno!=null and legrepCertno !='' ">
+                LEGREP_CERTNO=#{legrepCertno,jdbcType=VARCHAR},<!--法定代表人证件号码-->
+            </if>
+            <if test="orgcodeIssuEmp!=null and orgcodeIssuEmp !='' ">
+                ORGCODE_ISSU_EMP=#{orgcodeIssuEmp,jdbcType=VARCHAR},<!--组织机构代码证颁发单位-->
+            </if>
+            <if test="virFlag!=null and virFlag !='' ">
+                VIR_FLAG=#{virFlag,jdbcType=CHAR},<!--虚拟标志-->
+            </if>
+            <if test="lastChgInfo!=null and lastChgInfo !='' ">
+                LAST_CHG_INFO=#{lastChgInfo,jdbcType=VARCHAR},<!--最新变更信息-->
+            </if>
+            <if test="sendRegFlag!=null and sendRegFlag !='' ">
+                SEND_REG_FLAG=#{sendRegFlag,jdbcType=VARCHAR},<!--发送注册标志-->
+            </if>
+            <if test="memo!=null and memo !='' ">
+                MEMO=#{memo,jdbcType=VARCHAR},<!--备注-->
+            </if>
+            <if test="valiFlag!=null and valiFlag !='' ">
+                VALI_FLAG=#{valiFlag,jdbcType=VARCHAR},<!--有效标志-->
+            </if>
+            <if test="poolareaNo!=null and poolareaNo !='' ">
+                POOLAREA_NO=#{poolareaNo,jdbcType=VARCHAR},<!--统筹区编号-->
+            </if>
+            <if test="optChnl!=null and optChnl !='' ">
+                OPT_CHNL=#{optChnl,jdbcType=VARCHAR},<!--经办渠道-->
+            </if>
+            <if test="crteTime!=null">
+                CRTE_TIME=#{crteTime,jdbcType=DATE},<!--数据创建时间-->
+            </if>
+            <if test="updtTime!=null">
+                UPDT_TIME=#{updtTime,jdbcType=DATE},<!--数据更新时间-->
+            </if>
+            <if test="rid!=null and rid !='' ">
+                RID=#{rid,jdbcType=VARCHAR},<!--数据唯一记录号-->
+            </if>
+            <if test="insuEmpMgtEid!=null and insuEmpMgtEid !='' ">
+                INSU_EMP_MGT_EID=#{insuEmpMgtEid,jdbcType=VARCHAR},<!--参保单位管理事件ID-->
+            </if>
+            <if test="entpSpecFlag!=null and entpSpecFlag !='' ">
+                ENTP_SPEC_FLAG=#{entpSpecFlag,jdbcType=VARCHAR},<!--企业规格标志-->
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="insert" parameterType="com.linzb.guluuser.test.entity.EmpBasInfoExtCDO">
+	insert into emp_bas_info_ext_c(`EMP_NO`,`EMP_ENTT_CODG`,`EMP_MGT_TYPE`,`PRNT_EMP_NO`,`ASOC_LEGENT_FLAG`,`EMP_TYPE`,`EMP_NAME`,`REG_NAME`,`LOC_ADMDVS`,`CONER_CERT_TYPE`,`CONER_CERTNO`,`CONER_NAME`,`CONER_EMAIL`,`TEL`,`FAX_NO`,`TAX_REG_NO`,`ORGCODE`,`REGNO`,`REGNO_CERT_TYPE`,`EMP_ADDR`,`POSCODE`,`APRV_ESTA_DEPT`,`APRV_ESTA_DATE`,`APRV_ESTA_DOCNO`,`PRNT_ADMDVS`,`INSU_ADMDVS`,`ORG_VALI_STAS`,`LEGREP_TEL`,`LEGREP_NAME`,`LEGREP_CERT_TYPE`,`LEGREP_CERTNO`,`ORGCODE_ISSU_EMP`,`VIR_FLAG`,`LAST_CHG_INFO`,`SEND_REG_FLAG`,`MEMO`,`VALI_FLAG`,`POOLAREA_NO`,`OPT_CHNL`,`CRTE_TIME`,`UPDT_TIME`,`RID`,`INSU_EMP_MGT_EID`,`ENTP_SPEC_FLAG`)
+	values (#{empNo,jdbcType=VARCHAR},#{empEnttCodg,jdbcType=VARCHAR},#{empMgtType,jdbcType=VARCHAR},#{prntEmpNo,jdbcType=VARCHAR},#{asocLegentFlag,jdbcType=VARCHAR},#{empType,jdbcType=VARCHAR},#{empName,jdbcType=VARCHAR},#{regName,jdbcType=VARCHAR},#{locAdmdvs,jdbcType=VARCHAR},#{conerCertType,jdbcType=VARCHAR},#{conerCertno,jdbcType=VARCHAR},#{conerName,jdbcType=VARCHAR},#{conerEmail,jdbcType=VARCHAR},#{tel,jdbcType=VARCHAR},#{faxNo,jdbcType=VARCHAR},#{taxRegNo,jdbcType=VARCHAR},#{orgcode,jdbcType=VARCHAR},#{regno,jdbcType=VARCHAR},#{regnoCertType,jdbcType=VARCHAR},#{empAddr,jdbcType=VARCHAR},#{poscode,jdbcType=VARCHAR},#{aprvEstaDept,jdbcType=VARCHAR},#{aprvEstaDate,jdbcType=DATE},#{aprvEstaDocno,jdbcType=VARCHAR},#{prntAdmdvs,jdbcType=VARCHAR},#{insuAdmdvs,jdbcType=VARCHAR},#{orgValiStas,jdbcType=VARCHAR},#{legrepTel,jdbcType=VARCHAR},#{legrepName,jdbcType=VARCHAR},#{legrepCertType,jdbcType=VARCHAR},#{legrepCertno,jdbcType=VARCHAR},#{orgcodeIssuEmp,jdbcType=VARCHAR},#{virFlag,jdbcType=CHAR},#{lastChgInfo,jdbcType=VARCHAR},#{sendRegFlag,jdbcType=VARCHAR},#{memo,jdbcType=VARCHAR},#{valiFlag,jdbcType=VARCHAR},#{poolareaNo,jdbcType=VARCHAR},#{optChnl,jdbcType=VARCHAR},#{crteTime,jdbcType=DATE},#{updtTime,jdbcType=DATE},#{rid,jdbcType=VARCHAR},#{insuEmpMgtEid,jdbcType=VARCHAR},#{entpSpecFlag,jdbcType=VARCHAR})
+	</insert>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into emp_bas_info_ext_c(`EMP_NO`,`EMP_ENTT_CODG`,`EMP_MGT_TYPE`,`PRNT_EMP_NO`,`ASOC_LEGENT_FLAG`,`EMP_TYPE`,`EMP_NAME`,`REG_NAME`,`LOC_ADMDVS`,`CONER_CERT_TYPE`,`CONER_CERTNO`,`CONER_NAME`,`CONER_EMAIL`,`TEL`,`FAX_NO`,`TAX_REG_NO`,`ORGCODE`,`REGNO`,`REGNO_CERT_TYPE`,`EMP_ADDR`,`POSCODE`,`APRV_ESTA_DEPT`,`APRV_ESTA_DATE`,`APRV_ESTA_DOCNO`,`PRNT_ADMDVS`,`INSU_ADMDVS`,`ORG_VALI_STAS`,`LEGREP_TEL`,`LEGREP_NAME`,`LEGREP_CERT_TYPE`,`LEGREP_CERTNO`,`ORGCODE_ISSU_EMP`,`VIR_FLAG`,`LAST_CHG_INFO`,`SEND_REG_FLAG`,`MEMO`,`VALI_FLAG`,`POOLAREA_NO`,`OPT_CHNL`,`CRTE_TIME`,`UPDT_TIME`,`RID`,`INSU_EMP_MGT_EID`,`ENTP_SPEC_FLAG`)
+        values
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.empNo,jdbcType=VARCHAR},#{item.empEnttCodg,jdbcType=VARCHAR},#{item.empMgtType,jdbcType=VARCHAR},#{item.prntEmpNo,jdbcType=VARCHAR},#{item.asocLegentFlag,jdbcType=VARCHAR},#{item.empType,jdbcType=VARCHAR},#{item.empName,jdbcType=VARCHAR},#{item.regName,jdbcType=VARCHAR},#{item.locAdmdvs,jdbcType=VARCHAR},#{item.conerCertType,jdbcType=VARCHAR},#{item.conerCertno,jdbcType=VARCHAR},#{item.conerName,jdbcType=VARCHAR},#{item.conerEmail,jdbcType=VARCHAR},#{item.tel,jdbcType=VARCHAR},#{item.faxNo,jdbcType=VARCHAR},#{item.taxRegNo,jdbcType=VARCHAR},#{item.orgcode,jdbcType=VARCHAR},#{item.regno,jdbcType=VARCHAR},#{item.regnoCertType,jdbcType=VARCHAR},#{item.empAddr,jdbcType=VARCHAR},#{item.poscode,jdbcType=VARCHAR},#{item.aprvEstaDept,jdbcType=VARCHAR},#{item.aprvEstaDate,jdbcType=DATE},#{item.aprvEstaDocno,jdbcType=VARCHAR},#{item.prntAdmdvs,jdbcType=VARCHAR},#{item.insuAdmdvs,jdbcType=VARCHAR},#{item.orgValiStas,jdbcType=VARCHAR},#{item.legrepTel,jdbcType=VARCHAR},#{item.legrepName,jdbcType=VARCHAR},#{item.legrepCertType,jdbcType=VARCHAR},#{item.legrepCertno,jdbcType=VARCHAR},#{item.orgcodeIssuEmp,jdbcType=VARCHAR},#{item.virFlag,jdbcType=CHAR},#{item.lastChgInfo,jdbcType=VARCHAR},#{item.sendRegFlag,jdbcType=VARCHAR},#{item.memo,jdbcType=VARCHAR},#{item.valiFlag,jdbcType=VARCHAR},#{item.poolareaNo,jdbcType=VARCHAR},#{item.optChnl,jdbcType=VARCHAR},#{item.crteTime,jdbcType=DATE},#{item.updtTime,jdbcType=DATE},#{item.rid,jdbcType=VARCHAR},#{item.insuEmpMgtEid,jdbcType=VARCHAR},#{item.entpSpecFlag,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
+
+    <update id="updateBatchByPrimaryKey" parameterType="java.util.List">
+        update emp_bas_info_ext_c
+        <trim prefix="set" suffixOverrides=", ">
+            <trim prefix="EMP_NO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.empNo != null and item.empNo !=''">
+                        when EMP_NO= #{item.empNo}then #{item.empNo} <!--单位编号-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="EMP_ENTT_CODG = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.empEnttCodg != null and item.empEnttCodg !=''">
+                        when EMP_NO= #{item.empNo}then #{item.empEnttCodg} <!--单位实体编码-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="EMP_MGT_TYPE = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.empMgtType != null and item.empMgtType !=''">
+                        when EMP_NO= #{item.empNo}then #{item.empMgtType} <!--单位管理类型-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="PRNT_EMP_NO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.prntEmpNo != null and item.prntEmpNo !=''">
+                        when EMP_NO= #{item.empNo}then #{item.prntEmpNo} <!--上级单位编号-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="ASOC_LEGENT_FLAG = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.asocLegentFlag != null and item.asocLegentFlag !=''">
+                        when EMP_NO= #{item.empNo}then #{item.asocLegentFlag} <!--关联法人标志-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="EMP_TYPE = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.empType != null and item.empType !=''">
+                        when EMP_NO= #{item.empNo}then #{item.empType} <!--单位类型-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="EMP_NAME = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.empName != null and item.empName !=''">
+                        when EMP_NO= #{item.empNo}then #{item.empName} <!--单位名称-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="REG_NAME = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.regName != null and item.regName !=''">
+                        when EMP_NO= #{item.empNo}then #{item.regName} <!--注册名称-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="LOC_ADMDVS = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.locAdmdvs != null and item.locAdmdvs !=''">
+                        when EMP_NO= #{item.empNo}then #{item.locAdmdvs} <!--所属医保区划-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="CONER_CERT_TYPE = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.conerCertType != null and item.conerCertType !=''">
+                        when EMP_NO= #{item.empNo}then #{item.conerCertType} <!--联系人证件类型-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="CONER_CERTNO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.conerCertno != null and item.conerCertno !=''">
+                        when EMP_NO= #{item.empNo}then #{item.conerCertno} <!--联系人证件号-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="CONER_NAME = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.conerName != null and item.conerName !=''">
+                        when EMP_NO= #{item.empNo}then #{item.conerName} <!--联系人姓名-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="CONER_EMAIL = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.conerEmail != null and item.conerEmail !=''">
+                        when EMP_NO= #{item.empNo}then #{item.conerEmail} <!--联系人电子邮箱-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="TEL = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.tel != null and item.tel !=''">
+                        when EMP_NO= #{item.empNo}then #{item.tel} <!--联系电话-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="FAX_NO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.faxNo != null and item.faxNo !=''">
+                        when EMP_NO= #{item.empNo}then #{item.faxNo} <!--传真号码-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="TAX_REG_NO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.taxRegNo != null and item.taxRegNo !=''">
+                        when EMP_NO= #{item.empNo}then #{item.taxRegNo} <!--税务登记号-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="ORGCODE = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.orgcode != null and item.orgcode !=''">
+                        when EMP_NO= #{item.empNo}then #{item.orgcode} <!--组织机构代码-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="REGNO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.regno != null and item.regno !=''">
+                        when EMP_NO= #{item.empNo}then #{item.regno} <!--注册号-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="REGNO_CERT_TYPE = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.regnoCertType != null and item.regnoCertType !=''">
+                        when EMP_NO= #{item.empNo}then #{item.regnoCertType} <!--注册号证件类型-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="EMP_ADDR = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.empAddr != null and item.empAddr !=''">
+                        when EMP_NO= #{item.empNo}then #{item.empAddr} <!--单位地址-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="POSCODE = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.poscode != null and item.poscode !=''">
+                        when EMP_NO= #{item.empNo}then #{item.poscode} <!--邮政编码-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="APRV_ESTA_DEPT = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.aprvEstaDept != null and item.aprvEstaDept !=''">
+                        when EMP_NO= #{item.empNo}then #{item.aprvEstaDept} <!--批准成立部门-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="APRV_ESTA_DATE = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.aprvEstaDate != null">
+                        when EMP_NO= #{item.empNo}then #{item.aprvEstaDate} <!--批准成立日期-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="APRV_ESTA_DOCNO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.aprvEstaDocno != null and item.aprvEstaDocno !=''">
+                        when EMP_NO= #{item.empNo}then #{item.aprvEstaDocno} <!--批准成立文号-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="PRNT_ADMDVS = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.prntAdmdvs != null and item.prntAdmdvs !=''">
+                        when EMP_NO= #{item.empNo}then #{item.prntAdmdvs} <!--上级医保区划-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="INSU_ADMDVS = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.insuAdmdvs != null and item.insuAdmdvs !=''">
+                        when EMP_NO= #{item.empNo}then #{item.insuAdmdvs} <!--参保所属医保区划-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="ORG_VALI_STAS = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.orgValiStas != null and item.orgValiStas !=''">
+                        when EMP_NO= #{item.empNo}then #{item.orgValiStas} <!--组织有效状态-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="LEGREP_TEL = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.legrepTel != null and item.legrepTel !=''">
+                        when EMP_NO= #{item.empNo}then #{item.legrepTel} <!--法定代表人电话号码-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="LEGREP_NAME = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.legrepName != null and item.legrepName !=''">
+                        when EMP_NO= #{item.empNo}then #{item.legrepName} <!--法定代表人姓名-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="LEGREP_CERT_TYPE = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.legrepCertType != null and item.legrepCertType !=''">
+                        when EMP_NO= #{item.empNo}then #{item.legrepCertType} <!--法定代表人证件类型-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="LEGREP_CERTNO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.legrepCertno != null and item.legrepCertno !=''">
+                        when EMP_NO= #{item.empNo}then #{item.legrepCertno} <!--法定代表人证件号码-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="ORGCODE_ISSU_EMP = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.orgcodeIssuEmp != null and item.orgcodeIssuEmp !=''">
+                        when EMP_NO= #{item.empNo}then #{item.orgcodeIssuEmp} <!--组织机构代码证颁发单位-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="VIR_FLAG = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.virFlag != null and item.virFlag !=''">
+                        when EMP_NO= #{item.empNo}then #{item.virFlag} <!--虚拟标志-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="LAST_CHG_INFO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.lastChgInfo != null and item.lastChgInfo !=''">
+                        when EMP_NO= #{item.empNo}then #{item.lastChgInfo} <!--最新变更信息-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="SEND_REG_FLAG = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.sendRegFlag != null and item.sendRegFlag !=''">
+                        when EMP_NO= #{item.empNo}then #{item.sendRegFlag} <!--发送注册标志-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="MEMO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.memo != null and item.memo !=''">
+                        when EMP_NO= #{item.empNo}then #{item.memo} <!--备注-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="VALI_FLAG = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.valiFlag != null and item.valiFlag !=''">
+                        when EMP_NO= #{item.empNo}then #{item.valiFlag} <!--有效标志-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="POOLAREA_NO = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.poolareaNo != null and item.poolareaNo !=''">
+                        when EMP_NO= #{item.empNo}then #{item.poolareaNo} <!--统筹区编号-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="OPT_CHNL = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.optChnl != null and item.optChnl !=''">
+                        when EMP_NO= #{item.empNo}then #{item.optChnl} <!--经办渠道-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="CRTE_TIME = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.crteTime != null">
+                        when EMP_NO= #{item.empNo}then #{item.crteTime} <!--数据创建时间-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="UPDT_TIME = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.updtTime != null">
+                        when EMP_NO= #{item.empNo}then #{item.updtTime} <!--数据更新时间-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="RID = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.rid != null and item.rid !=''">
+                        when EMP_NO= #{item.empNo}then #{item.rid} <!--数据唯一记录号-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="INSU_EMP_MGT_EID = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.insuEmpMgtEid != null and item.insuEmpMgtEid !=''">
+                        when EMP_NO= #{item.empNo}then #{item.insuEmpMgtEid} <!--参保单位管理事件ID-->
+                    </if>
+                </foreach>
+            </trim>
+            <trim prefix="ENTP_SPEC_FLAG = case" suffix="end,">
+                <foreach collection="list" item="item">
+                    <if test="item.entpSpecFlag != null and item.entpSpecFlag !=''">
+                        when EMP_NO= #{item.empNo}then #{item.entpSpecFlag} <!--企业规格标志-->
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        <where>
+            <foreach collection="list" item="item" open="and EMP_NO in(" close=")" separator=",">
+                #{item.empNo}
+            </foreach>
+        </where>
+    </update>
+
+    <select id="selectList" parameterType="com.linzb.guluuser.test.entity.EmpBasInfoExtCDO" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM emp_bas_info_ext_c
+        <where>
+            <include refid="whereCondtion"/>
+        </where>
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="com.linzb.guluuser.test.entity.EmpBasInfoExtCDO" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        FROM emp_bas_info_ext_c
+        WHERE EMP_NO = #{empNo,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectListByPrimaryKeys" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        FROM emp_bas_info_ext_c
+        WHERE
+        <foreach collection="list" item="item" open="and EMP_NO in(" close=")" separator=",">
+            #{item.empNo}
+        </foreach>
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="com.linzb.guluuser.test.entity.EmpBasInfoExtCDO">
+	DELETE FROM emp_bas_info_ext_c
+	WHERE EMP_NO = #{empNo,jdbcType=VARCHAR}
+	</delete>
+
+    <delete id="deleteBatchByPrimaryKey" parameterType="java.util.List">
+        DELETE FROM emp_bas_info_ext_c
+        WHERE
+        <foreach collection="list" item="item" open="and EMP_NO in(" close=")" separator=",">
+            #{item.empNo}
+        </foreach>
+    </delete>
+
+    <delete id="delete" parameterType="com.linzb.guluuser.test.entity.EmpBasInfoExtCDO">
+        DELETE FROM emp_bas_info_ext_c
+        <where>
+            <include refid="whereCondtion"/>
+        </where>
+    </delete>
+
+    <update id="updateByPrimaryKey" parameterType="com.linzb.guluuser.test.entity.EmpBasInfoExtCDO">
+        update emp_bas_info_ext_c
+        <include refid="UpdateSql" />
+        WHERE EMP_NO = #{empNo,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateBtchByPkForFeilds">
+        update emp_bas_info_ext_c
+        <trim prefix="set" suffixOverrides=", ">
+            <if test="commonFeildDO.empNo!=null and commonFeildDO.empNo !='' ">
+                EMP_NO=#{commonFeildDO.empNo,jdbcType=VARCHAR}<!--单位编号-->
+            </if>
+            <if test="commonFeildDO.empEnttCodg!=null and commonFeildDO.empEnttCodg !='' ">
+                EMP_ENTT_CODG=#{commonFeildDO.empEnttCodg,jdbcType=VARCHAR}<!--单位实体编码-->
+            </if>
+            <if test="commonFeildDO.empMgtType!=null and commonFeildDO.empMgtType !='' ">
+                EMP_MGT_TYPE=#{commonFeildDO.empMgtType,jdbcType=VARCHAR}<!--单位管理类型-->
+            </if>
+            <if test="commonFeildDO.prntEmpNo!=null and commonFeildDO.prntEmpNo !='' ">
+                PRNT_EMP_NO=#{commonFeildDO.prntEmpNo,jdbcType=VARCHAR}<!--上级单位编号-->
+            </if>
+            <if test="commonFeildDO.asocLegentFlag!=null and commonFeildDO.asocLegentFlag !='' ">
+                ASOC_LEGENT_FLAG=#{commonFeildDO.asocLegentFlag,jdbcType=VARCHAR}<!--关联法人标志-->
+            </if>
+            <if test="commonFeildDO.empType!=null and commonFeildDO.empType !='' ">
+                EMP_TYPE=#{commonFeildDO.empType,jdbcType=VARCHAR}<!--单位类型-->
+            </if>
+            <if test="commonFeildDO.empName!=null and commonFeildDO.empName !='' ">
+                EMP_NAME=#{commonFeildDO.empName,jdbcType=VARCHAR}<!--单位名称-->
+            </if>
+            <if test="commonFeildDO.regName!=null and commonFeildDO.regName !='' ">
+                REG_NAME=#{commonFeildDO.regName,jdbcType=VARCHAR}<!--注册名称-->
+            </if>
+            <if test="commonFeildDO.locAdmdvs!=null and commonFeildDO.locAdmdvs !='' ">
+                LOC_ADMDVS=#{commonFeildDO.locAdmdvs,jdbcType=VARCHAR}<!--所属医保区划-->
+            </if>
+            <if test="commonFeildDO.conerCertType!=null and commonFeildDO.conerCertType !='' ">
+                CONER_CERT_TYPE=#{commonFeildDO.conerCertType,jdbcType=VARCHAR}<!--联系人证件类型-->
+            </if>
+            <if test="commonFeildDO.conerCertno!=null and commonFeildDO.conerCertno !='' ">
+                CONER_CERTNO=#{commonFeildDO.conerCertno,jdbcType=VARCHAR}<!--联系人证件号-->
+            </if>
+            <if test="commonFeildDO.conerName!=null and commonFeildDO.conerName !='' ">
+                CONER_NAME=#{commonFeildDO.conerName,jdbcType=VARCHAR}<!--联系人姓名-->
+            </if>
+            <if test="commonFeildDO.conerEmail!=null and commonFeildDO.conerEmail !='' ">
+                CONER_EMAIL=#{commonFeildDO.conerEmail,jdbcType=VARCHAR}<!--联系人电子邮箱-->
+            </if>
+            <if test="commonFeildDO.tel!=null and commonFeildDO.tel !='' ">
+                TEL=#{commonFeildDO.tel,jdbcType=VARCHAR}<!--联系电话-->
+            </if>
+            <if test="commonFeildDO.faxNo!=null and commonFeildDO.faxNo !='' ">
+                FAX_NO=#{commonFeildDO.faxNo,jdbcType=VARCHAR}<!--传真号码-->
+            </if>
+            <if test="commonFeildDO.taxRegNo!=null and commonFeildDO.taxRegNo !='' ">
+                TAX_REG_NO=#{commonFeildDO.taxRegNo,jdbcType=VARCHAR}<!--税务登记号-->
+            </if>
+            <if test="commonFeildDO.orgcode!=null and commonFeildDO.orgcode !='' ">
+                ORGCODE=#{commonFeildDO.orgcode,jdbcType=VARCHAR}<!--组织机构代码-->
+            </if>
+            <if test="commonFeildDO.regno!=null and commonFeildDO.regno !='' ">
+                REGNO=#{commonFeildDO.regno,jdbcType=VARCHAR}<!--注册号-->
+            </if>
+            <if test="commonFeildDO.regnoCertType!=null and commonFeildDO.regnoCertType !='' ">
+                REGNO_CERT_TYPE=#{commonFeildDO.regnoCertType,jdbcType=VARCHAR}<!--注册号证件类型-->
+            </if>
+            <if test="commonFeildDO.empAddr!=null and commonFeildDO.empAddr !='' ">
+                EMP_ADDR=#{commonFeildDO.empAddr,jdbcType=VARCHAR}<!--单位地址-->
+            </if>
+            <if test="commonFeildDO.poscode!=null and commonFeildDO.poscode !='' ">
+                POSCODE=#{commonFeildDO.poscode,jdbcType=VARCHAR}<!--邮政编码-->
+            </if>
+            <if test="commonFeildDO.aprvEstaDept!=null and commonFeildDO.aprvEstaDept !='' ">
+                APRV_ESTA_DEPT=#{commonFeildDO.aprvEstaDept,jdbcType=VARCHAR}<!--批准成立部门-->
+            </if>
+            <if test="commonFeildDO.aprvEstaDate!=null">
+                APRV_ESTA_DATE=#{commonFeildDO.aprvEstaDate,jdbcType=DATE}<!--批准成立日期-->
+            </if>
+            <if test="commonFeildDO.aprvEstaDocno!=null and commonFeildDO.aprvEstaDocno !='' ">
+                APRV_ESTA_DOCNO=#{commonFeildDO.aprvEstaDocno,jdbcType=VARCHAR}<!--批准成立文号-->
+            </if>
+            <if test="commonFeildDO.prntAdmdvs!=null and commonFeildDO.prntAdmdvs !='' ">
+                PRNT_ADMDVS=#{commonFeildDO.prntAdmdvs,jdbcType=VARCHAR}<!--上级医保区划-->
+            </if>
+            <if test="commonFeildDO.insuAdmdvs!=null and commonFeildDO.insuAdmdvs !='' ">
+                INSU_ADMDVS=#{commonFeildDO.insuAdmdvs,jdbcType=VARCHAR}<!--参保所属医保区划-->
+            </if>
+            <if test="commonFeildDO.orgValiStas!=null and commonFeildDO.orgValiStas !='' ">
+                ORG_VALI_STAS=#{commonFeildDO.orgValiStas,jdbcType=VARCHAR}<!--组织有效状态-->
+            </if>
+            <if test="commonFeildDO.legrepTel!=null and commonFeildDO.legrepTel !='' ">
+                LEGREP_TEL=#{commonFeildDO.legrepTel,jdbcType=VARCHAR}<!--法定代表人电话号码-->
+            </if>
+            <if test="commonFeildDO.legrepName!=null and commonFeildDO.legrepName !='' ">
+                LEGREP_NAME=#{commonFeildDO.legrepName,jdbcType=VARCHAR}<!--法定代表人姓名-->
+            </if>
+            <if test="commonFeildDO.legrepCertType!=null and commonFeildDO.legrepCertType !='' ">
+                LEGREP_CERT_TYPE=#{commonFeildDO.legrepCertType,jdbcType=VARCHAR}<!--法定代表人证件类型-->
+            </if>
+            <if test="commonFeildDO.legrepCertno!=null and commonFeildDO.legrepCertno !='' ">
+                LEGREP_CERTNO=#{commonFeildDO.legrepCertno,jdbcType=VARCHAR}<!--法定代表人证件号码-->
+            </if>
+            <if test="commonFeildDO.orgcodeIssuEmp!=null and commonFeildDO.orgcodeIssuEmp !='' ">
+                ORGCODE_ISSU_EMP=#{commonFeildDO.orgcodeIssuEmp,jdbcType=VARCHAR}<!--组织机构代码证颁发单位-->
+            </if>
+            <if test="commonFeildDO.virFlag!=null and commonFeildDO.virFlag !='' ">
+                VIR_FLAG=#{commonFeildDO.virFlag,jdbcType=CHAR}<!--虚拟标志-->
+            </if>
+            <if test="commonFeildDO.lastChgInfo!=null and commonFeildDO.lastChgInfo !='' ">
+                LAST_CHG_INFO=#{commonFeildDO.lastChgInfo,jdbcType=VARCHAR}<!--最新变更信息-->
+            </if>
+            <if test="commonFeildDO.sendRegFlag!=null and commonFeildDO.sendRegFlag !='' ">
+                SEND_REG_FLAG=#{commonFeildDO.sendRegFlag,jdbcType=VARCHAR}<!--发送注册标志-->
+            </if>
+            <if test="commonFeildDO.memo!=null and commonFeildDO.memo !='' ">
+                MEMO=#{commonFeildDO.memo,jdbcType=VARCHAR}<!--备注-->
+            </if>
+            <if test="commonFeildDO.valiFlag!=null and commonFeildDO.valiFlag !='' ">
+                VALI_FLAG=#{commonFeildDO.valiFlag,jdbcType=VARCHAR}<!--有效标志-->
+            </if>
+            <if test="commonFeildDO.poolareaNo!=null and commonFeildDO.poolareaNo !='' ">
+                POOLAREA_NO=#{commonFeildDO.poolareaNo,jdbcType=VARCHAR}<!--统筹区编号-->
+            </if>
+            <if test="commonFeildDO.optChnl!=null and commonFeildDO.optChnl !='' ">
+                OPT_CHNL=#{commonFeildDO.optChnl,jdbcType=VARCHAR}<!--经办渠道-->
+            </if>
+            <if test="commonFeildDO.crteTime!=null">
+                CRTE_TIME=#{commonFeildDO.crteTime,jdbcType=DATE}<!--数据创建时间-->
+            </if>
+            <if test="commonFeildDO.updtTime!=null">
+                UPDT_TIME=#{commonFeildDO.updtTime,jdbcType=DATE}<!--数据更新时间-->
+            </if>
+            <if test="commonFeildDO.rid!=null and commonFeildDO.rid !='' ">
+                RID=#{commonFeildDO.rid,jdbcType=VARCHAR}<!--数据唯一记录号-->
+            </if>
+            <if test="commonFeildDO.insuEmpMgtEid!=null and commonFeildDO.insuEmpMgtEid !='' ">
+                INSU_EMP_MGT_EID=#{commonFeildDO.insuEmpMgtEid,jdbcType=VARCHAR}<!--参保单位管理事件ID-->
+            </if>
+            <if test="commonFeildDO.entpSpecFlag!=null and commonFeildDO.entpSpecFlag !='' ">
+                ENTP_SPEC_FLAG=#{commonFeildDO.entpSpecFlag,jdbcType=VARCHAR}<!--企业规格标志-->
+            </if>
+        </trim>
+        <where>
+            <foreach collection="list" item="item" open="and EMP_NO in(" close=")" separator=",">
+                #{item.empNo}
+            </foreach>
+        </where>
+    </update>
+</mapper>
