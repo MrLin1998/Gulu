@@ -5,8 +5,8 @@ spring:
     url: jdbc:mysql://localhost:3306/springcloud?connectTimeout=6000&socketTimeout=6000&autoReconnect=true&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
-mybatis:
-  mapper-locations: classpath:sql/*Mapper.xml
+#mybatis:
+#  mapper-locations: classpath:sql/*Mapper.xml
 
 sss:
   a: 555
