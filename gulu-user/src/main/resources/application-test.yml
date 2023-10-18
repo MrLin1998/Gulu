@@ -1,3 +1,6 @@
+server:
+  port: 8080
+
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -24,6 +27,34 @@ spring:
         min-idle: 0
         #连接池中最大连接数，负数表示没有限
         max-active: 20
+  #kafka
+  kafka:
+    bootstrap-servers: test.mq_cep_rtc01.kafka.product.cob:6667,test.mq_cep_rtc02.kafka.product.cob:6667,test.mq_cep_rtc03.kafka.product.cob:6667
+    #bootstrap-servers: 192.168.133.128:9092
+    producer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    consumer:
+      #默认消费者组
+      group-id: user
+      properties:
+        #消费超时时间,间隔poll最大时间,一小时
+        # 使用 Kafka 消费分组机制时，再次调用 poll 允许的最大间隔。如果在该时间内没有再次调用 poll，则认为该消费者已经失败，Broker 会重新发起 Rebalance 把分配给它的 partition 分配给其他消费者
+        max.poll.interval.ms: 3600000
+        max.poll.records: 1
+        # 使用 Kafka 消费分组机制时，消费者超时时间。当 Broker 在该时间内没有收到消费者的心跳时，认为该消费者故障失败，Broker 发起重新 Rebalance 过程。目前该值的配置必须在 Broker 配置group.min.session.timeout.ms=6000和group.max.session.timeout.ms=300000 之间
+        session.timeout.ms: 60000
+        # 使用 Kafka 消费分组机制时，消费者发送心跳的间隔。这个值必须小于 session.timeout.ms，一般小于它的三分之一
+        heartbeat.interval.ms: 3000
+      #手动提交
+      enable-auto-commit: false
+      auto-commit-interval: 10000
+    listener:
+      #offset提交,立即提交
+      ack-mode: MANUAL_IMMEDIATE
+      #单条消费模式
+      type: single
+      missing-topics-fatal: false
 
 sss:
   a: 555
