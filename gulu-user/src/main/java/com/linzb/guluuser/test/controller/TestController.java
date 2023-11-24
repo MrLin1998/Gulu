@@ -4,8 +4,8 @@ import com.linzb.guluuser.common.util.CacheUtil;
 import com.linzb.guluuser.test.dao.TestDAO;
 import com.linzb.guluuser.test.entity.EmpBasInfoExtCDO;
 import com.linzb.guluuser.test.service.TestService;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerRecord;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -32,6 +32,8 @@ public class TestController {
     CacheUtil cacheUtil;
     @Resource
     KafkaTemplate kafkaTemplate;
+    @Resource
+    RedissonClient redissonClient;
 
     @PostMapping("/sss")
     public String test(){
@@ -83,4 +85,14 @@ public class TestController {
         }
         return "ok";
     }
+
+    @PostMapping("/redisson")
+    public String redisson() throws  Exception{
+        RLock myLock = redissonClient.getLock("myLock");
+        myLock.tryLock(3,TimeUnit.SECONDS);
+        Thread.sleep(8000);
+        myLock.unlock();
+        return "ok";
+    }
+
 }

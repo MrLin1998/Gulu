@@ -11,8 +11,10 @@ spring:
 #mybatis:
 #  mapper-locations: classpath:sql/*Mapper.xml
   redis:
-    host: 120.25.150.153
+    host: 192.168.133.128
     port: 6379
+#    cluster:
+#      nodes: 192.168.133.128:6379
     database: 0
     timeout: 10000
     password: linzb1998
@@ -79,7 +81,7 @@ sftp:
 
 xxl-job:
   #xxjob的地址
-  address: 127.0.0.1:8090/xxl-job-admin/
+  address: 192.168.133.128:8090/xxl-job-admin/
   #执行器的名字
   executor-appname: xx-job-linzb
   #注册的地址 自动注入可以不写
