@@ -6,15 +6,17 @@ import com.linzb.guluuser.test.entity.EmpBasInfoExtCDO;
 import com.linzb.guluuser.test.service.TestService;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.concurrent.TimeUnit;
 
 @RestController
@@ -32,7 +34,7 @@ public class TestController {
     CacheUtil cacheUtil;
     @Resource
     KafkaTemplate kafkaTemplate;
-    @Resource
+    @Autowired(required = false)
     RedissonClient redissonClient;
 
     @PostMapping("/sss")
@@ -93,6 +95,33 @@ public class TestController {
         Thread.sleep(8000);
         myLock.unlock();
         return "ok";
+    }
+
+    @GetMapping("download")
+    public String download(@RequestParam String filepath, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        System.out.println(filepath);
+        System.out.println(request.getParameter("filepath"));
+        System.out.println(response.getHeaderNames());
+
+        // /SEND_HOME/20231121/SBF_YWJY101_350000031035000020231121627983.xml
+        int start = filepath.lastIndexOf("/") + 1;
+        String fileName = filepath.substring(start);
+
+        String ok = new String("ok");
+        response.setContentType("application/octet-stream;charset=UTF-8");
+        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+        response.setCharacterEncoding("UTF-8");
+        try (InputStream fis = new ByteArrayInputStream(ok.getBytes());
+             OutputStream os = response.getOutputStream()) {
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "download success";
     }
 
 }
