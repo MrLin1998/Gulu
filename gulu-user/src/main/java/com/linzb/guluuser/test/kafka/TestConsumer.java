@@ -31,7 +31,7 @@ public class TestConsumer {
         System.out.println("=======结束消费1=========");
     }
 
-    //@KafkaListener(topics = "test",groupId="myConsumer2")
+    @KafkaListener(topics = "test",groupId="myConsumer2")
     void doBusiness2(ConsumerRecord<String, String> record, Acknowledgment ack){
         System.out.println("=======开始消费2=========");
         String value = record.value();
