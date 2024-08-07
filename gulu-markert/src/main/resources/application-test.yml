@@ -1,7 +1,9 @@
 server:
-  port: 8081
+  port: 8082
 
 spring:
+  application:
+    name: gulu-market
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -92,6 +94,11 @@ xxl-job:
   accessToken:
   executor-logpath: E:\练手项目\common-log\gulu-xxljob
   executor-logretentionday: 1
+
+dubbo:
+  registry:
+    address: 192.168.133.128:2181
+    protocol: zookeeper
 
 sss:
   a: 555

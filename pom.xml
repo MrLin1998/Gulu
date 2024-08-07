@@ -21,7 +21,8 @@
     <modules>
         <module>gulu-common</module>
         <module>gulu-user</module>
-        <module>markert</module>
+        <module>gulu-markert</module>
+        <module>gulu-api</module>
     </modules>
 
     <!--依赖-->
@@ -40,10 +41,10 @@
     <!--插件-->
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--            </plugin>-->
             <!--  跳过测试 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
