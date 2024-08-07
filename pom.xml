@@ -21,6 +21,7 @@
     <modules>
         <module>gulu-common</module>
         <module>gulu-user</module>
+        <module>markert</module>
     </modules>
 
     <!--依赖-->
