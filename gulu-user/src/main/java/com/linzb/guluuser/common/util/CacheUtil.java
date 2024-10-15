@@ -1,14 +1,12 @@
 package com.linzb.guluuser.common.util;
 
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.RedisScript;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -527,6 +525,14 @@ public class CacheUtil {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    /**
+     * 执行rua脚本
+     *
+     * */
+    public <T> T executeLuaScript(String luaScript,Class<T> returnType,String key,Object... args){
+        return  (T)redisTemplate.execute(RedisScript.of(luaScript, returnType), Collections.singletonList(key), args);
     }
 
 }

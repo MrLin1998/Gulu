@@ -1,5 +1,6 @@
 package com.linzb.guluuser.test.controller;
 
+import com.linzb.gulucommon.limit.RateLimit;
 import com.linzb.guluuser.common.util.CacheUtil;
 import com.linzb.guluuser.test.dao.TestDAO;
 import com.linzb.guluuser.test.entity.EmpBasInfoExtCDO;
@@ -124,4 +125,9 @@ public class TestController {
         return "download success";
     }
 
+    @GetMapping("/rateLimit")
+    @RateLimit(key = "rateLimitTest",interval = 60,time = 5)
+    String rateLimit(){
+        return "ok";
+    }
 }
