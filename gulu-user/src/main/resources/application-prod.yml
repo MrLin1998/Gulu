@@ -1,1 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        enabled: true
+        server-addr: 192.168.133.130:8848
+        file-extension: yaml
+        namespace: gulu-user
+        group: DEFAULT_GROUP
+        refresh-enabled: true
 

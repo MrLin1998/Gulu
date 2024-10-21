@@ -1,3 +1,18 @@
+#spring:
+#  profiles:
+#    active: test
 spring:
-  profiles:
-    active: test
+  application:
+    name: gulu-user
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.133.130:8848
+        file-extension: yaml
+        namespace: 96131fc3-2275-4bbe-aa4d-d12259f6d213
+        group: DEFAULT_GROUP
+        refresh-enabled: true
+
+
+
+

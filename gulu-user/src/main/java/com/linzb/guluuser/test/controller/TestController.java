@@ -27,6 +27,9 @@ public class TestController {
     @Value("${sss.a}")
     String a;
 
+    @Value("${nacos.test:未匹配到相关配置}")
+    String nacosConfig;
+
     @Resource
     TestService testService;
     @Resource
@@ -129,5 +132,10 @@ public class TestController {
     @RateLimit(key = "rateLimitTest",interval = 60,time = 5)
     String rateLimit(){
         return "ok";
+    }
+
+    @GetMapping("/nacosConfig")
+    public String nacosConfig(){
+        return nacosConfig;
     }
 }
